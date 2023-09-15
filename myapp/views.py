@@ -7,5 +7,5 @@ def index(request):
 def create(request):
     return HttpResponse('Create!')
 
-def read(request):
-    return HttpResponse('Read!')
+def read(request, id):
+    return HttpResponse('Read!'+id)
