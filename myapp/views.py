@@ -10,7 +10,7 @@ def index(request):
     global topics
     ol = ''
     for topic in topics:
-        ol += f'<li>{topic["title"]}</li>'
+        ol += f'<li><a href="/read/{topic["id"]}">{topic["title"]}</a></li>'
     return HttpResponse(f'''
     <html>
     <body>
