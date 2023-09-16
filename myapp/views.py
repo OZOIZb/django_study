@@ -43,8 +43,10 @@ def read(request, id):
 
 def create(request):
     article = '''
-        <p><input type="text" name="title" placeholder="title"></p>
-        <p><textarea name="body" placeholder="body"></textarea></p>
-        <p><input type="submit"></p>
+        <form action="/create/">
+            <p><input type="text" name="title" placeholder="title"></p>
+            <p><textarea name="body" placeholder="body"></textarea></p>
+            <p><input type="submit"></p>
+        </form>
     '''
     return HttpResponse(HTMLTemplate(article))
