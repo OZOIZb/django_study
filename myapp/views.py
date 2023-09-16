@@ -70,3 +70,14 @@ def create(request):
         nextId = nextId + 1
         return redirect(url)
         
+@csrf_exempt
+def delete(request):
+    global topics
+    if request.method == 'POST':
+        id = request.POST['id']
+        newTopics = []
+        for topic in topics:
+            if topic['id'] != int(id):
+                newTopics.append(topic)
+        topics = newTopics
+        return redirect('/')
