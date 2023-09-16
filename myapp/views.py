@@ -19,6 +19,9 @@ def HTMLTemplate(articleTag):
             {ol}
         </ol>
         {articleTag}
+        <ul>
+            <li><a href="/create/">create</a></li>
+        </ul>
     </body>
     </html>
     '''
@@ -39,4 +42,7 @@ def read(request, id):
     return HttpResponse(HTMLTemplate(article))
 
 def create(request):
-    return HttpResponse('Create!')
+    article = '''
+        <p><input type="text" name="title" placeholder="title"></p>
+    '''
+    return HttpResponse(HTMLTemplate(article))
