@@ -31,7 +31,12 @@ def index(request):
     return HttpResponse(HTMLTemplate(article))
 
 def read(request, id):
-    return HttpResponse('Read!'+id)
+    global topics
+    article = ''
+    for topic in topics:
+        if topic['id'] == int(id):
+            article = f'<h2>{topic["title"]}</h2>{topic["body"]}'
+    return HttpResponse(HTMLTemplate(article))
 
 def create(request):
     return HttpResponse('Create!')
