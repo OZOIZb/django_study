@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 nextId = 4
@@ -60,6 +60,7 @@ def create(request):
         body = request.POST['body']
         newTopic = {'id':nextId, 'title':title, 'body':body}
         topics.append(newTopic)
+        url = '/read/'+str(nextId)
         nextId = nextId + 1
-        return HttpResponse(HTMLTemplate('AAA'))
+        return redirect(url)
         
