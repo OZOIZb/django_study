@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
+nextId = 4
 topics = [
     {'id':1, 'title':'Routing', 'body':'Routing is ...'},
     {'id':2, 'title':'View', 'body':'View is ...'},
@@ -44,6 +45,7 @@ def read(request, id):
 
 @csrf_exempt
 def create(request):
+    global nextId
     if request.method == 'GET':
         article = '''
             <form action="/create/" method="post">
@@ -53,3 +55,10 @@ def create(request):
             </form>
         '''
         return HttpResponse(HTMLTemplate(article))
+    elif request.method == 'POST':
+        title = request.POST['title']
+        body = request.POST['body']
+        newTopic = {'id':nextId, 'title':title, 'body':body}
+        topics.append(newTopic)
+        return HttpResponse(HTMLTemplate('AAA'))
+        
