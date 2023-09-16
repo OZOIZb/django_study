@@ -6,12 +6,12 @@ topics = [
     {'id':3, 'title':'Model', 'body':'Model is ...'},
 ]
 
-def index(request):
+def HTMLTemplate():
     global topics
     ol = ''
     for topic in topics:
         ol += f'<li><a href="/read/{topic["id"]}">{topic["title"]}</a></li>'
-    return HttpResponse(f'''
+    return f'''
     <html>
     <body>
         <h1>Django</h1>
@@ -22,10 +22,13 @@ def index(request):
         Hello, Django
     </body>
     </html>
-    ''')
+    '''
 
-def create(request):
-    return HttpResponse('Create!')
+def index(request):
+    return HttpResponse(HTMLTemplate())
 
 def read(request, id):
     return HttpResponse('Read!'+id)
+
+def create(request):
+    return HttpResponse('Create!')
