@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 topics = [
     {'id':1, 'title':'Routing', 'body':'Routing is ...'},
@@ -41,6 +42,7 @@ def read(request, id):
             article = f'<h2>{topic["title"]}</h2>{topic["body"]}'
     return HttpResponse(HTMLTemplate(article))
 
+@csrf_exempt
 def create(request):
     article = '''
         <form action="/create/" method="post">
