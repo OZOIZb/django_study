@@ -19,6 +19,7 @@ def HTMLTemplate(articleTag, id=None):
                     <input type="submit" value="delete">
                 </form>
             </li>
+            <li><a href="/update/{id}">update</a></li>
         '''
     ol = ''
     for topic in topics:
@@ -75,6 +76,14 @@ def create(request):
         nextId = nextId + 1
         return redirect(url)
         
+@csrf_exempt
+def update(request, id):
+    if request.method == 'GET':
+        article = 'Updaate'
+        return HttpResponse(HTMLTemplate(article, id))
+    elif request.method == 'POST':
+        return redirect(f'/read/{id}')
+
 @csrf_exempt
 def delete(request):
     global topics
