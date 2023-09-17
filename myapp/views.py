@@ -78,8 +78,21 @@ def create(request):
         
 @csrf_exempt
 def update(request, id):
+    global topics
     if request.method == 'GET':
-        article = 'Updaate'
+        for topic in topics:
+            if topic['id'] == int(id):
+                selectedTopic = {
+                    "title":topic['title'],
+                    "body":topic['body']
+                }
+        article = f'''
+            <form action="/update/{id}" method="post">
+                <p><input type="text" name="title" placeholder="title" value={selectedTopic["title"]}></p>
+                <p><textarea name="body" placeholder="body">{selectedTopic["body"]}</textarea></p>
+                <p><input type="submit"></p>
+            </form>
+        '''
         return HttpResponse(HTMLTemplate(article, id))
     elif request.method == 'POST':
         return redirect(f'/read/{id}')
